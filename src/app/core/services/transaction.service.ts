@@ -9,8 +9,15 @@ import { Transaction } from '../types/transaction.type';
 export class TransactionService {
   constructor(private readonly httpClient: HttpClient) { }
 
-  getAll(): Observable<Transaction[]> {
-    return this.httpClient.get<Transaction[]>('/api/v1/transactions');
+  getAll(month?: number, year?: number): Observable<Transaction[]> {
+    let params = {};
+    if (month) {
+      params = { ...params, month };
+    }
+    if (year) {
+      params = { ...params, year };
+    }
+    return this.httpClient.get<Transaction[]>('/api/v1/transactions', { params });
   }
 
   register(transaction: Transaction): Observable<Transaction> {
