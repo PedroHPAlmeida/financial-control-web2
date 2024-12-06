@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Balance } from '../types/balance.type';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,7 @@ export class BalanceService {
 
   constructor(private readonly httpClient: HttpClient) { }
 
-  checkBalance(month?: number, year?: number): any {
+  checkBalance(month?: number, year?: number): Observable<Balance> {
     let params = {};
     if (month) {
       params = { ...params, month };
@@ -17,10 +19,10 @@ export class BalanceService {
       params = { ...params, year };
     }
 
-    return this.httpClient.get('/api/v1/balance', { params });
+    return this.httpClient.get<Balance>('/api/v1/balance', { params });
   }
 
-  checkBalancePlusRemainingPayments(month?: number, year?: number): any {
+  checkBalancePlusRemainingPayments(month?: number, year?: number): Observable<Balance> {
     let params = {};
     if (month) {
       params = { ...params, month };
@@ -28,6 +30,6 @@ export class BalanceService {
     if (year) {
       params = { ...params, year };
     }
-    return this.httpClient.get('/api/v1/balance/plus-remaining-payments', { params });
+    return this.httpClient.get<Balance>('/api/v1/balance/plus-remaining-payments', { params });
   }
 }
