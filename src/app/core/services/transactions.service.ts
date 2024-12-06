@@ -9,7 +9,11 @@ import { Transaction } from '../types/transaction.type';
 export class TransactionsService {
   constructor(private readonly httpClient: HttpClient) { }
 
-  getTransactions(): Observable<Transaction[]> {
+  getAll(): Observable<Transaction[]> {
     return this.httpClient.get<Transaction[]>('/api/v1/transactions');
+  }
+
+  register(transaction: Transaction): Observable<Transaction> {
+    return this.httpClient.post<Transaction>('/api/v1/transactions', transaction);
   }
 }

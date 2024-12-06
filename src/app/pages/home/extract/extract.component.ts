@@ -19,7 +19,7 @@ export class ExtractComponent implements OnInit {
   }
 
   getTransactions() {
-    this.transactionsService.getTransactions().subscribe(transactions => {
+    this.transactionsService.getAll().subscribe(transactions => {
       this.transactions = transactions;
       console.log(this.transactions);
     });
