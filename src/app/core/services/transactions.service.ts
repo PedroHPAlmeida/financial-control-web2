@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Transaction } from '../types/transaction.type';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 export class TransactionsService {
   constructor(private readonly httpClient: HttpClient) { }
 
-  getTransactions(): Observable<any[]> {
-    return this.httpClient.get<any[]>('/api/v1/transactions');
+  getTransactions(): Observable<Transaction[]> {
+    return this.httpClient.get<Transaction[]>('/api/v1/transactions');
   }
 }
