@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TransactionsService } from '../../../core/services/transactions.service';
+import { TransactionService } from '../../../core/services/transaction.service';
 import { Transaction } from '../../../core/types/transaction.type';
 
 @Component({
@@ -11,7 +11,7 @@ export class ExtractComponent implements OnInit {
   transactions: Transaction[] = [];
   columnsToDisplay = ['id', 'title', 'description', 'value', 'type', 'currentMonth', 'date', 'time'];
 
-  constructor(private readonly transactionsService: TransactionsService) { }
+  constructor(private readonly transactionService: TransactionService) { }
 
   ngOnInit() {
     console.log('ExtractComponent');
@@ -19,7 +19,7 @@ export class ExtractComponent implements OnInit {
   }
 
   getTransactions() {
-    this.transactionsService.getAll().subscribe(transactions => {
+    this.transactionService.getAll().subscribe(transactions => {
       this.transactions = transactions;
       console.log(this.transactions);
     });

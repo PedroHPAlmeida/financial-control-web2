@@ -6,7 +6,7 @@ import { Transaction } from '../types/transaction.type';
 @Injectable({
   providedIn: 'root'
 })
-export class TransactionsService {
+export class TransactionService {
   constructor(private readonly httpClient: HttpClient) { }
 
   getAll(): Observable<Transaction[]> {
