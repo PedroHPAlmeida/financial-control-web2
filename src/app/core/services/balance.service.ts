@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BalanceService {
+  basePath = '/api/v1/balance';
 
   constructor(private readonly httpClient: HttpClient) { }
 
@@ -19,7 +20,7 @@ export class BalanceService {
       params = { ...params, year };
     }
 
-    return this.httpClient.get<Balance>('/api/v1/balance', { params });
+    return this.httpClient.get<Balance>(this.basePath, { params });
   }
 
   checkBalancePlusRemainingPayments(month?: number, year?: number): Observable<Balance> {
@@ -30,6 +31,6 @@ export class BalanceService {
     if (year) {
       params = { ...params, year };
     }
-    return this.httpClient.get<Balance>('/api/v1/balance/plus-remaining-payments', { params });
+    return this.httpClient.get<Balance>(`${this.basePath}/plus-remaining-payments`, { params });
   }
 }
