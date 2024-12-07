@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home.component';
+import { TransactionsComponent } from './transactions.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ExtractComponent } from './extract/extract.component';
 
@@ -8,7 +8,7 @@ import { ExtractComponent } from './extract/extract.component';
 
 @NgModule({
   declarations: [
-    HomeComponent,
+    TransactionsComponent,
     ExtractComponent,
   ],
   imports: [
@@ -16,7 +16,7 @@ import { ExtractComponent } from './extract/extract.component';
     SharedModule,
   ],
   exports: [
-    HomeComponent
+    TransactionsComponent
   ]
 })
-export class HomeModule { }
+export class TransactionsModule { }
