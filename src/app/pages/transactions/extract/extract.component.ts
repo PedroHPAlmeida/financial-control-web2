@@ -9,7 +9,7 @@ import { Transaction } from '../../../core/types/transaction.type';
 })
 export class ExtractComponent implements OnInit {
   transactions: Transaction[] = [];
-  columnsToDisplay = ['id', 'title', 'description', 'value', 'type', 'currentMonth', 'date', 'time'];
+  columnsToDisplay = ['title', 'description', 'value', 'type', 'currentMonth', 'date'];
 
   constructor(private readonly transactionService: TransactionService) { }
 

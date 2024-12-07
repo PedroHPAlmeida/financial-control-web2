@@ -1,10 +1,4 @@
 <table mat-table [dataSource]="transactions">
-    <!-- Id -->
-    <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let transaction"> {{ transaction.id }} </td>
-    </ng-container>
-
     <!-- Title -->
     <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef> Título </th>
@@ -39,12 +33,6 @@
     <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef> Data </th>
         <td mat-cell *matCellDef="let transaction"> {{ transaction.date }} </td>
-    </ng-container>
-
-    <!-- Time -->
-    <ng-container matColumnDef="time">
-        <th mat-header-cell *matHeaderCellDef> Horário </th>
-        <td mat-cell *matCellDef="let transaction"> {{ transaction.time }} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
