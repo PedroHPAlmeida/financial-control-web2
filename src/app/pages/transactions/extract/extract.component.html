@@ -22,12 +22,6 @@
         </td>
     </ng-container>
 
-    <!-- Current Month -->
-    <ng-container matColumnDef="currentMonth">
-        <th mat-header-cell *matHeaderCellDef> Mês Corrente </th>
-        <td mat-cell *matCellDef="let transaction"> {{ transaction.currentMonth | currentMonthPt | titlecase }} </td>
-    </ng-container>
-
     <!-- Date -->
     <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef> Data </th>
