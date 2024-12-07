@@ -14,14 +14,12 @@ export class ExtractComponent implements OnInit {
   constructor(private readonly transactionService: TransactionService) { }
 
   ngOnInit() {
-    console.log('ExtractComponent');
     this.getTransactions();
   }
 
   getTransactions() {
     this.transactionService.getAll().subscribe(transactions => {
       this.transactions = transactions;
-      console.log(this.transactions);
     });
   }
 }
