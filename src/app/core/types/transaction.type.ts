@@ -3,20 +3,7 @@ export enum TransactionType {
     DEBIT,
 }
 
-export enum Month {
-    JANUARY,
-    FEBRUARY,
-    MARCH,
-    APRIL,
-    MAY,
-    JUNE,
-    JULY,
-    AUGUST,
-    SEPTEMBER,
-    OCTOBER,
-    NOVEMBER,
-    DECEMBER,
-}
+export type Month = 'JANUARY' | 'FEBRUARY' | 'MARCH' | 'APRIL' | 'MAY' | 'JUNE' | 'JULY' | 'AUGUST' | 'SEPTEMBER' | 'OCTOBER' | 'NOVEMBER' | 'DECEMBER';
 
 export type Transaction = {
     id: string;

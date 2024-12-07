@@ -26,7 +26,7 @@
     <!-- Current Month -->
     <ng-container matColumnDef="currentMonth">
         <th mat-header-cell *matHeaderCellDef> Mês Corrente </th>
-        <td mat-cell *matCellDef="let transaction"> {{ transaction.currentMonth }} </td>
+        <td mat-cell *matCellDef="let transaction"> {{ transaction.currentMonth | currentMonthPt | titlecase }} </td>
     </ng-container>
 
     <!-- Date -->
