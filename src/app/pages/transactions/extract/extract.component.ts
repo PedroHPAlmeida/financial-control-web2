@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from '../../../core/services/transaction.service';
 import { Transaction } from '../../../core/types/transaction.type';
+import { TransactionDetailsComponent } from '../transaction-details/transaction-details.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-extract',
@@ -11,7 +13,10 @@ export class ExtractComponent implements OnInit {
   transactions: Transaction[] = [];
   columnsToDisplay = ['title', 'description', 'value', 'date'];
 
-  constructor(private readonly transactionService: TransactionService) { }
+  constructor(
+    private readonly transactionService: TransactionService,
+    public transactionDetailsDialog: MatDialog,
+  ) { }
 
   ngOnInit() {
     this.getTransactions();
@@ -21,5 +26,9 @@ export class ExtractComponent implements OnInit {
     this.transactionService.getAll().subscribe(transactions => {
       this.transactions = transactions;
     });
+  }
+
+  openTransactionDetails(transaction: Transaction) {
+    this.transactionDetailsDialog.open(TransactionDetailsComponent, { data: transaction })
   }
 }

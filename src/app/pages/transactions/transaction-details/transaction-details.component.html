@@ -1,0 +1,18 @@
+<div>
+    <h2 mat-dialog-title>{{ transaction.title }}</h2>
+    <mat-dialog-content>
+        <div>
+            <p>ID: {{ transaction.id }}</p>
+            <p>Descrição: {{ transaction.description }}</p>
+            <div class="transaction-details__value">
+                <p>Valor: {{ transaction.value | currency }}</p>
+                <img [src]="transaction.type | transactionTypeIcon" alt="arrow">
+            </div>
+            <p>Data: {{ transaction.date | date }}</p>
+            <p>Hora: {{ transaction.time }}</p>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Fechar</button>
+    </mat-dialog-actions>
+</div>
