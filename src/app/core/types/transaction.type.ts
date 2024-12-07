@@ -1,7 +1,4 @@
-export enum TransactionType {
-    CREDIT,
-    DEBIT,
-}
+export type TransactionType = 'CREDIT' | 'DEBIT';
 
 export type Month = 'JANUARY' | 'FEBRUARY' | 'MARCH' | 'APRIL' | 'MAY' | 'JUNE' | 'JULY' | 'AUGUST' | 'SEPTEMBER' | 'OCTOBER' | 'NOVEMBER' | 'DECEMBER';
 
