@@ -28,3 +28,12 @@ export type Transaction = {
     date: string;
     time: string;
 };
+
+export type TransactionCreate = {
+    title: string;
+    description: string;
+    value: number;
+    type: TransactionType;
+    currentMonth: Month;
+    date: string;
+};

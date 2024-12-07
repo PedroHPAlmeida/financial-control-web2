@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Transaction } from '../types/transaction.type';
+import { Transaction, TransactionCreate } from '../types/transaction.type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionService {
+  basePath = '/api/v1/transactions';
+
   constructor(private readonly httpClient: HttpClient) { }
 
   getAll(month?: number, year?: number): Observable<Transaction[]> {
@@ -17,10 +19,10 @@ export class TransactionService {
     if (year) {
       params = { ...params, year };
     }
-    return this.httpClient.get<Transaction[]>('/api/v1/transactions', { params });
+    return this.httpClient.get<Transaction[]>(this.basePath, { params });
   }
 
-  register(transaction: Transaction): Observable<Transaction> {
-    return this.httpClient.post<Transaction>('/api/v1/transactions', transaction);
+  register(transaction: TransactionCreate): Observable<Transaction> {
+    return this.httpClient.post<Transaction>(this.basePath, transaction);
   }
 }
