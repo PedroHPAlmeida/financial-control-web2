@@ -1,4 +1,7 @@
-<div>
-    <h1>Transações Recentes</h1>
+<div class="transactions">
+    <header class="transactions__header">
+        <h1>Transações Recentes</h1>
+        <button mat-flat-button color="primary" (click)="openNewTransactionDialog()">Nova</button>
+    </header>
     <app-extract />
 </div>

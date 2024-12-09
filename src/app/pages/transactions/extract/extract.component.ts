@@ -15,7 +15,7 @@ export class ExtractComponent implements OnInit {
 
   constructor(
     private readonly transactionService: TransactionService,
-    public transactionDetailsDialog: MatDialog,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -29,6 +29,6 @@ export class ExtractComponent implements OnInit {
   }
 
   openTransactionDetails(transaction: Transaction) {
-    this.transactionDetailsDialog.open(TransactionDetailsComponent, { data: transaction })
+    this.dialog.open(TransactionDetailsComponent, { data: transaction })
   }
 }
