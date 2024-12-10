@@ -1,0 +1,8 @@
+.new-transaction {
+    width: 400px;
+
+    &__form-fields {
+        display: flex;
+        flex-direction: column;
+    }
+}

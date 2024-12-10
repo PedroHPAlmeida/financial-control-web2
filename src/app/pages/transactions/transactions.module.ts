@@ -5,6 +5,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { ExtractComponent } from './extract/extract.component';
 import { TransactionDetailsComponent } from './transaction-details/transaction-details.component';
 import { NewTransactionComponent } from './new-transaction/new-transaction.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,6 +19,7 @@ import { NewTransactionComponent } from './new-transaction/new-transaction.compo
   imports: [
     CommonModule,
     SharedModule,
+    ReactiveFormsModule,
   ],
   exports: [
     TransactionsComponent
