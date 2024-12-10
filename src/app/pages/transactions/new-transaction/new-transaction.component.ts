@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { TransactionService } from '../../../core/services/transaction.service';
+import { TransactionCreate } from '../../../core/types/transaction.type';
 
 @Component({
   selector: 'app-new-transaction',
@@ -28,13 +30,19 @@ export class NewTransactionComponent {
     { name: 'Dezembro', value: 12 },
   ];
 
-  saveTransaction(event: Event) {
+  constructor(private readonly transactionService: TransactionService) { };
+
+  registerTransaction(event: Event) {
     event.preventDefault();
-    console.log(this.title.value);
-    console.log(this.description.value);
-    console.log(this.value.value);
-    console.log(this.transactionType.value);
-    console.log(this.date.value);
-    console.log(this.currentMonth.value);
+
+    const transaction: TransactionCreate = {
+      title: this.title.value,
+      description: this.description.value || '',
+      value: this.value.value || 0,
+      type: this.transactionType.value,
+      date: this.date.value || new Date(),
+      currentMonth: this.currentMonth.value
+    }
+    this.transactionService.register(transaction).subscribe((_) => { });
   }
 }

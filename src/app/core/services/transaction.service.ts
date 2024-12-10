@@ -23,6 +23,6 @@ export class TransactionService {
   }
 
   register(transaction: TransactionCreate): Observable<Transaction> {
-    return this.httpClient.post<Transaction>(this.basePath, transaction);
+    return this.httpClient.post<Transaction>(this.basePath, {...transaction, date: transaction.date.toISOString()});
   }
 }
