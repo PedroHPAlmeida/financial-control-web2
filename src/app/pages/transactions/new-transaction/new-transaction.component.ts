@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TransactionService } from '../../../core/services/transaction.service';
 import { TransactionCreate } from '../../../core/types/transaction.type';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-new-transaction',
@@ -30,7 +31,7 @@ export class NewTransactionComponent {
     { name: 'Dezembro', value: 12 },
   ];
 
-  constructor(private readonly transactionService: TransactionService) { };
+  constructor(private readonly snackBar: MatSnackBar, private readonly transactionService: TransactionService) { };
 
   registerTransaction(event: Event) {
     event.preventDefault();
@@ -43,6 +44,15 @@ export class NewTransactionComponent {
       date: this.date.value || new Date(),
       currentMonth: this.currentMonth.value
     }
-    this.transactionService.register(transaction).subscribe((_) => { });
+    this.transactionService.register(transaction).subscribe((_) => {
+      this.openSnackBar();
+    });
+  }
+
+  private openSnackBar() {
+    this.snackBar.open('Transação registrada com sucesso!', undefined, {
+      duration: 3000,
+      verticalPosition: 'top',
+    });
   }
 }
