@@ -1,19 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TransactionService } from '../../../core/services/transaction.service';
-import { TransactionCreate } from '../../../core/types/transaction.type';
+import { TransactionCategory, TransactionCreate } from '../../../core/types/transaction.type';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CategoryService } from '../../../core/services/category.service';
 
 @Component({
   selector: 'app-new-transaction',
   templateUrl: './new-transaction.component.html',
   styleUrl: './new-transaction.component.scss'
 })
-export class NewTransactionComponent {
+export class NewTransactionComponent implements OnInit {
   title = new FormControl();
   description = new FormControl('');
   value = new FormControl(0);
   transactionType = new FormControl();
+  category = new FormControl();
   date = new FormControl(new Date());
   currentMonth = new FormControl();
   months = [
@@ -30,8 +32,13 @@ export class NewTransactionComponent {
     { name: 'Novembro', value: 11 },
     { name: 'Dezembro', value: 12 },
   ];
+  categories: TransactionCategory[] = [];
 
-  constructor(private readonly snackBar: MatSnackBar, private readonly transactionService: TransactionService) { };
+  constructor(private readonly snackBar: MatSnackBar, private readonly transactionService: TransactionService, private readonly categoryService: CategoryService) { }
+
+  ngOnInit(): void {
+    this.getCategories();
+  }
 
   registerTransaction(event: Event) {
     event.preventDefault();
@@ -41,11 +48,18 @@ export class NewTransactionComponent {
       description: this.description.value || '',
       value: this.value.value || 0,
       type: this.transactionType.value,
+      categoryId: this.category.value.id,
       date: this.date.value || new Date(),
       currentMonth: this.currentMonth.value
     }
     this.transactionService.register(transaction).subscribe((_) => {
       this.openSnackBar();
+    });
+  }
+
+  private getCategories() {
+    this.categoryService.getAll().subscribe(categories => {
+      this.categories = categories;
     });
   }
 

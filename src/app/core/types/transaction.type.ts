@@ -1,6 +1,12 @@
-export type TransactionType = 'CREDIT' | 'DEBIT';
+export type TransactionType = 'CREDIT' | 'EXPENSE';
 
 export type Month = 'JANUARY' | 'FEBRUARY' | 'MARCH' | 'APRIL' | 'MAY' | 'JUNE' | 'JULY' | 'AUGUST' | 'SEPTEMBER' | 'OCTOBER' | 'NOVEMBER' | 'DECEMBER';
+
+export type TransactionCategory = {
+    id: string;
+    name: string;
+    description: string;
+}
 
 export type Transaction = {
     id: string;
@@ -10,7 +16,8 @@ export type Transaction = {
     type: TransactionType;
     currentMonth: Month;
     date: string;
-    time: string;
+    timestamp: string;
+    category: TransactionCategory;
 };
 
 export type TransactionCreate = {
@@ -20,4 +27,5 @@ export type TransactionCreate = {
     type: TransactionType;
     currentMonth: Month;
     date: Date;
+    categoryId: string;
 };

@@ -9,7 +9,7 @@
                 <img [src]="transaction.type | transactionTypeIcon" alt="arrow">
             </div>
             <p>Data: {{ transaction.date | date }}</p>
-            <p>Hora: {{ transaction.time }}</p>
+            <p>Hora: {{ transaction.timestamp }}</p>
         </div>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
