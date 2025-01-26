@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from '../../../core/services/transaction.service';
-import { Transaction } from '../../../core/types/transaction.type';
+import { Transaction, TransactionType } from '../../../core/types/transaction.type';
 import { TransactionDetailsComponent } from '../transaction-details/transaction-details.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class ExtractComponent implements OnInit {
   transactions: Transaction[] = [];
   columnsToDisplay = ['title', 'description', 'value', 'date'];
+  selectedTransactionType?: TransactionType;
 
   constructor(
     private readonly transactionService: TransactionService,
@@ -23,9 +24,25 @@ export class ExtractComponent implements OnInit {
   }
 
   getTransactions() {
-    this.transactionService.getAll().subscribe(transactions => {
-      this.transactions = transactions;
-    });
+    this.transactionService.getAll(undefined, undefined, this.selectedTransactionType)
+      .subscribe(transactions => {
+        this.transactions = transactions;
+      });
+  }
+
+  onTabChange(index: number) {
+    switch (index) {
+      case 0:
+        this.selectedTransactionType = undefined;
+        break;
+      case 1:
+        this.selectedTransactionType = 'CREDIT';
+        break;
+      case 2:
+        this.selectedTransactionType = 'EXPENSE';
+        break;
+    }
+    this.getTransactions();
   }
 
   openTransactionDetails(transaction: Transaction) {
