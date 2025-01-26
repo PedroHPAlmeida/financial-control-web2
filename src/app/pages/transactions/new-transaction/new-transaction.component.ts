@@ -48,7 +48,7 @@ export class NewTransactionComponent implements OnInit {
       description: this.description.value || '',
       value: this.value.value || 0,
       type: this.transactionType.value,
-      categoryId: this.category.value.id,
+      categoryId: this.category.value ? this.category.value.id : undefined,
       date: this.date.value || new Date(),
       currentMonth: this.currentMonth.value
     }
