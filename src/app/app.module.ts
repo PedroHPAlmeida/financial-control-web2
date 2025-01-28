@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { DATE_PIPE_DEFAULT_OPTIONS, registerLocaleData } from '@angular/common'
 import localePt from '@angular/common/locales/pt';
+import { ConsolidatedMonthModule } from './pages/consolidated-month/consolidated-month.module';
 
 const LOCALE = 'pt-BR';
 registerLocaleData(localePt, LOCALE);
@@ -22,6 +23,7 @@ const CURRENCY_CODE = 'BRL';
     BrowserModule,
     AppRoutingModule,
     TransactionsModule,
+    ConsolidatedMonthModule,
     HttpClientModule,
     CoreModule,
   ],
