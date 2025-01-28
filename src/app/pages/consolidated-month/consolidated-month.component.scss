@@ -4,4 +4,20 @@
         align-items: center;
         justify-content: space-between;
     }
+
+    &__expenses {
+        &__row {
+            cursor: pointer;
+        }
+    
+        &__value {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+    
+            p {
+                margin: 0;
+            }
+        }
+    }
 }

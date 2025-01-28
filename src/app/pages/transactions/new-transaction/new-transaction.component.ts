@@ -4,6 +4,7 @@ import { TransactionService } from '../../../core/services/transaction.service';
 import { TransactionCategory, TransactionCreate } from '../../../core/types/transaction.type';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CategoryService } from '../../../core/services/category.service';
+import { getMonths } from '../../../shared/utils/utils';
 
 @Component({
   selector: 'app-new-transaction',
@@ -18,20 +19,7 @@ export class NewTransactionComponent implements OnInit {
   category = new FormControl();
   date = new FormControl(new Date());
   currentMonth = new FormControl();
-  months = [
-    { name: 'Janeiro', value: 1 },
-    { name: 'Fevereiro', value: 2 },
-    { name: 'Março', value: 3 },
-    { name: 'Abril', value: 4 },
-    { name: 'Maio', value: 5 },
-    { name: 'Junho', value: 6 },
-    { name: 'Julho', value: 7 },
-    { name: 'Agosto', value: 8 },
-    { name: 'Setembro', value: 9 },
-    { name: 'Outubro', value: 10 },
-    { name: 'Novembro', value: 11 },
-    { name: 'Dezembro', value: 12 },
-  ];
+  months = getMonths();
   categories: TransactionCategory[] = [];
 
   constructor(private readonly snackBar: MatSnackBar, private readonly transactionService: TransactionService, private readonly categoryService: CategoryService) { }

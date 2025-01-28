@@ -23,13 +23,6 @@ export class ExtractComponent implements OnInit {
     this.getTransactions();
   }
 
-  getTransactions() {
-    this.transactionService.getAll(undefined, undefined, this.selectedTransactionType)
-      .subscribe(transactions => {
-        this.transactions = transactions;
-      });
-  }
-
   onTabChange(index: number) {
     switch (index) {
       case 0:
@@ -47,5 +40,12 @@ export class ExtractComponent implements OnInit {
 
   openTransactionDetails(transaction: Transaction) {
     this.dialog.open(TransactionDetailsComponent, { data: transaction })
+  }
+
+  private getTransactions() {
+    this.transactionService.getAll(undefined, undefined, this.selectedTransactionType)
+      .subscribe(transactions => {
+        this.transactions = transactions;
+      });
   }
 }
