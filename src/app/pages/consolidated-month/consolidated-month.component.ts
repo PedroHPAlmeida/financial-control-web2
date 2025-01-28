@@ -3,6 +3,8 @@ import { getMonths } from '../../shared/utils/utils';
 import { FormControl } from '@angular/forms';
 import { Transaction } from '../../core/types/transaction.type';
 import { TransactionService } from '../../core/services/transaction.service';
+import { TransactionDetailsComponent } from '../../shared/components/transaction-details/transaction-details.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-consolidated-month',
@@ -15,7 +17,10 @@ export class ConsolidatedMonthComponent implements OnInit {
   expenses: Transaction[] = [];
   columnsToDisplay = ['title', 'value'];
 
-  constructor(private transactionService: TransactionService) { }
+  constructor(
+    private transactionService: TransactionService,
+    public dialog: MatDialog,
+  ) { }
 
   ngOnInit() {
     this.getTransactions();
@@ -26,6 +31,10 @@ export class ConsolidatedMonthComponent implements OnInit {
     this.currentMonth.valueChanges.subscribe(() => {
       this.getTransactions();
     });
+  }
+
+  openExpenseDetails(transaction: Transaction) {
+    this.dialog.open(TransactionDetailsComponent, { data: transaction })
   }
 
   private getTransactions() {

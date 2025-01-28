@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from '../../../core/services/transaction.service';
 import { Transaction, TransactionType } from '../../../core/types/transaction.type';
-import { TransactionDetailsComponent } from '../transaction-details/transaction-details.component';
+import { TransactionDetailsComponent } from '../../../shared/components/transaction-details/transaction-details.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
