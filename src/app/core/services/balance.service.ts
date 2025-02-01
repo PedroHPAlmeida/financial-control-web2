@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BalanceService {
-  basePath = '/api/v1/balance';
+  basePath = '/api/v1/check-balance';
 
   constructor(private readonly httpClient: HttpClient) { }
 

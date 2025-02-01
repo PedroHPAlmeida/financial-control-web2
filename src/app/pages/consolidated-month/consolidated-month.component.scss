@@ -3,21 +3,39 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-bottom: 24px;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: row;
+        gap: 48px;
+
+        &>* {
+            flex: 1;
+            min-width: 0;
+        }
     }
 
     &__expenses {
         &__row {
             cursor: pointer;
         }
-    
+
         &__value {
             display: flex;
             align-items: center;
             gap: 8px;
-    
+
             p {
                 margin: 0;
             }
         }
+    }
+
+    &__balances-row {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
     }
 }
