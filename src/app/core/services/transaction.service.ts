@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Transaction, TransactionCreate, TransactionType } from '../types/transaction.type';
+import { ConsolidatedTransactions, Transaction, TransactionCreate, TransactionType } from '../types/transaction.type';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +27,10 @@ export class TransactionService {
 
   register(transaction: TransactionCreate): Observable<Transaction> {
     return this.httpClient.post<Transaction>(this.basePath, {...transaction, date: transaction.date.toISOString()});
+  }
+
+  consolidateMonth(type: TransactionType, month: number, year: number): Observable<ConsolidatedTransactions[]> {
+    const params = { type, month, year };
+    return this.httpClient.get<ConsolidatedTransactions[]>(`${this.basePath}/consolidated`, { params });
   }
 }

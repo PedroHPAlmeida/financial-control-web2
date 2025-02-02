@@ -1,0 +1,15 @@
+<div>
+    <h2 mat-dialog-title>{{ consolidated.title }}</h2>
+    <mat-dialog-content>
+        <ul>
+            <li *ngFor="let t of consolidated.transactions">
+                <p>ID: {{ t.id | shortenUuid }}</p>
+                <p>Valor: {{ t.value | currency }}</p>
+                <p>Data: {{ t.date | date }}</p>
+            </li>
+        </ul>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-flat-button color="warn" mat-dialog-close>Fechar</button>
+    </mat-dialog-actions>
+</div>
