@@ -1,10 +1,12 @@
 <section class="container">
     <section class="container__side-menu">
+        <button routerLink="/transactions" routerLinkActive="active">Transações</button>
+        <button routerLink="/consolidated" routerLinkActive="active">Consolidado</button>
     </section>
     <section class="container__content">
         <div class="container__content-top"></div>
         <div class="container__content-body">
-            <app-transactions />
+            <router-outlet></router-outlet>
         </div>
     </section>
 </section>
