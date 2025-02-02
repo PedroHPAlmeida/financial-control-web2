@@ -38,6 +38,14 @@
 
         <div>
             <div class="consolidated-month__balances-row">
+                <h3>Créditos:</h3>
+                <p>{{ totals.credits | currency }}</p>
+            </div>
+            <div class="consolidated-month__balances-row">
+                <h3>Despesas:</h3>
+                <p>{{ totals.expenses | currency }}</p>
+            </div>
+            <div class="consolidated-month__balances-row">
                 <h3>Saldo:</h3>
                 <p>{{ balance | currency }}</p>
             </div>

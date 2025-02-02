@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { getMonths } from '../../shared/utils/utils';
 import { FormControl } from '@angular/forms';
-import { ConsolidatedTransactions, Transaction } from '../../core/types/transaction.type';
+import { ConsolidatedTransactions, Transaction, TransactionTotals } from '../../core/types/transaction.type';
 import { TransactionService } from '../../core/services/transaction.service';
 import { TransactionDetailsComponent } from '../../shared/components/transaction-details/transaction-details.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -15,8 +15,10 @@ import { ConsolidatedTransactionDetailsComponent } from '../../shared/components
 })
 export class ConsolidatedMonthComponent implements OnInit {
   currentMonth = new FormControl(new Date().getMonth() + 1);
+  currentYear = new Date().getFullYear();
   months = getMonths();
   consolidatedTransactions: ConsolidatedTransactions[] = [];
+  totals: TransactionTotals = { 'credits': 0, 'expenses': 0 };
   balance: number = 0;
   balancePlusRemainingPayments: number = 0;
   columnsToDisplay = ['title', 'value'];
@@ -34,6 +36,7 @@ export class ConsolidatedMonthComponent implements OnInit {
 
   onCurrentMonthChange() {
     this.currentMonth.valueChanges.subscribe(() => {
+      this.getTotals();
       this.getConsolidatedTransactions();
       this.getBalances();
     });
@@ -43,10 +46,19 @@ export class ConsolidatedMonthComponent implements OnInit {
     this.dialog.open(ConsolidatedTransactionDetailsComponent, { data: consolidated })
   }
 
+  private getTotals() {
+    if (!this.currentMonth.value) return;
+
+    this.transactionService.getTotals(this.currentMonth.value, this.currentYear)
+      .subscribe(totals => {
+        this.totals = totals;
+      });
+  }
+
   private getConsolidatedTransactions() {
     if (!this.currentMonth.value) return;
 
-    this.transactionService.consolidateMonth('EXPENSE', this.currentMonth.value, new Date().getFullYear())
+    this.transactionService.consolidateMonth('EXPENSE', this.currentMonth.value, this.currentYear)
       .subscribe(expenses => {
         this.consolidatedTransactions = expenses;
       });

@@ -35,3 +35,8 @@ export type ConsolidatedTransactions = {
     total: number;
     transactions: Transaction[];
 }
+
+export type TransactionTotals = {
+    credits: number;
+    expenses: number;
+}
