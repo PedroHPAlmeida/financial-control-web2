@@ -6,6 +6,7 @@ export type TransactionCategory = {
     id: string;
     name: string;
     description: string;
+    type: TransactionType;
 }
 
 export type Transaction = {

@@ -24,11 +24,13 @@
                 <mat-radio-button value="EXPENSE">Despesa</mat-radio-button>
             </mat-radio-group>
 
-            <ng-container *ngIf="transactionType.dirty && transactionType.value === 'EXPENSE'">
+            <ng-container *ngIf="transactionType.dirty">
                 <mat-form-field>
                     <mat-label>Categoria</mat-label>
                     <mat-select id="category" [formControl]="category">
-                        <mat-option *ngFor="let category of categories" [value]="category">{{ category.name }}</mat-option>
+                        <mat-option
+                            *ngFor="let category of transactionType.value === 'CREDIT' ? creditCategories : expenseCategories"
+                            [value]="category.id">{{ category.name }}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </ng-container>

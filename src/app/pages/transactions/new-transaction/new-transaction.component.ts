@@ -20,7 +20,8 @@ export class NewTransactionComponent implements OnInit {
   date = new FormControl(new Date());
   currentMonth = new FormControl();
   months = getMonths();
-  categories: TransactionCategory[] = [];
+  creditCategories: TransactionCategory[] = [];
+  expenseCategories: TransactionCategory[] = [];
 
   constructor(private readonly snackBar: MatSnackBar, private readonly transactionService: TransactionService, private readonly categoryService: CategoryService) { }
 
@@ -47,7 +48,8 @@ export class NewTransactionComponent implements OnInit {
 
   private getCategories() {
     this.categoryService.getAll().subscribe(categories => {
-      this.categories = categories;
+      this.creditCategories = categories.filter(category => category.type === 'CREDIT');
+      this.expenseCategories = categories.filter(category => category.type === 'EXPENSE');
     });
   }
 
