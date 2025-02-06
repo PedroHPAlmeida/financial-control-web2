@@ -1,0 +1,36 @@
+@import '../../../../styles/colors.scss';
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 16px;
+    gap: 16px;
+
+    &__hello {
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        opacity: 1;
+        transform: translateX(0);
+        margin: 0;
+
+        &.hide {
+            opacity: 0;
+            transform: translateY(50%);
+        }
+    }
+
+    &__date-container {
+        display: flex;
+        align-items: center;
+        color: $gray-3;
+        transform: translateX(0);
+
+        &.move-left {
+            transform: translateX(-140%);
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+}

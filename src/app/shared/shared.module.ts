@@ -9,6 +9,7 @@ import { ShortenUuidPipe } from './pipes/shorten-uuid.pipe';
 import { MenuComponent } from './components/menu/menu.component';
 import { MenuItemComponent } from './components/menu/menu-item/menu-item.component';
 import { MenuLogoComponent } from './components/menu/menu-logo/menu-logo.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { MenuLogoComponent } from './components/menu/menu-logo/menu-logo.compone
         MenuComponent,
         MenuItemComponent,
         MenuLogoComponent,
+        HeaderComponent,
     ],
     imports: [
         BrowserModule,
@@ -34,6 +36,7 @@ import { MenuLogoComponent } from './components/menu/menu-logo/menu-logo.compone
         ShortenUuidPipe,
         TransactionTypeIconPipe,
         MenuComponent,
+        HeaderComponent,
     ],
 })
 export class SharedModule { }

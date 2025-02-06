@@ -1,0 +1,7 @@
+<header class="header">
+    <h1 class="text-bold-24-28 header__hello" [ngClass]="{ 'hide': !showHello }">Olá {{ name }}</h1>
+    <div class="header__date-container" [ngClass]="{ 'move-left': !showHello }">
+        <img src="assets/icons/chevrons-right.svg">
+        <p class="text-regular-14-20">{{ date | date : 'dd MMMM, YYYY' }}</p>
+    </div>
+</header>

@@ -1,17 +1,15 @@
-@import url("./styles/colors.scss");
-@import url("./styles/fonts.scss");
-@import url("./styles/reset.scss");
+@import "./styles/colors.scss";
+@import "./styles/fonts.scss";
+@import "./styles/reset.scss";
 
 html,
 body {
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-button {
-    text-transform: uppercase !important;
+    font-family: "Inter", sans-serif;
+    background-color: $main-bg;
 }
