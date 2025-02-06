@@ -1,0 +1,80 @@
+$primary: #299D91;
+$secondary: #525256;
+$default-black: #191919;
+$white: #FFFFFF;
+$gray-1: #666666;
+$gray-2: #878787;
+$gray-3: #9F9F9F;
+$gray-4: #D1D1D1;
+$gray-5: #E8E8E8;
+$gray-6: #F3F3F3;
+$special-bg: rgba(255, 255, 255, 0.25);
+$special-bg2: rgba(255, 255, 255, 0.7);
+$special-bg3: rgba(255, 255, 255, 0.08);
+$red: #E73D1C;
+$green: #4DAF6E;
+$main-bg: #F4F5F7;
+
+.primary {
+    background-color: $primary;
+}
+
+.secondary {
+    background-color: $secondary;
+}
+
+.default-black {
+    background-color: $default-black;
+}
+
+.white {
+    background-color: $white;
+}
+
+.gray-1 {
+    background-color: $gray-1;
+}
+
+.gray-2 {
+    background-color: $gray-2;
+}
+
+.gray-3 {
+    background-color: $gray-3;
+}
+
+.gray-4 {
+    background-color: $gray-4;
+}
+
+.gray-5 {
+    background-color: $gray-5;
+}
+
+.gray-6 {
+    background-color: $gray-6;
+}
+
+.special-bg {
+    background-color: $special-bg;
+}
+
+.special-bg2 {
+    background-color: $special-bg2;
+}
+
+.special-bg3 {
+    background-color: $special-bg3;
+}
+
+.red {
+    background-color: $red;
+}
+
+.green {
+    background-color: $green;
+}
+
+.main-bg {
+    background-color: $main-bg;
+}

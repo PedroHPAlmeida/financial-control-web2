@@ -1,0 +1,14 @@
+<div [class]="{
+    'menu-item': true,
+    'primary': isSelected,
+    'menu-item__selected': isSelected,
+    'menu-item__not-selected': !isSelected,
+}">
+    <img [src]="image" class="menu-item__image">
+    <div [class]="{
+        'text-semibold-16-24': isSelected,
+        'text-regular-16-24': !isSelected,
+    }">
+        <ng-content></ng-content>
+    </div>
+</div>

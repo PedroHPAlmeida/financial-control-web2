@@ -1,0 +1,10 @@
+<aside class="menu">
+    <app-menu-logo class="menu__logo" />
+    <nav class="menu__items text-semibold-16-24">
+        <ng-container *ngFor="let item of menuItems">
+            <app-menu-item class="menu__item" [image]="item.image" [isSelected]="item.isSelected"
+                (click)="onClickMenuItem(item)" [routerLink]="item.routerLink">{{ item.title
+                }}</app-menu-item>
+        </ng-container>
+    </nav>
+</aside>

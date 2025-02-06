@@ -12,6 +12,7 @@ import { DATE_PIPE_DEFAULT_OPTIONS, registerLocaleData } from '@angular/common'
 import localePt from '@angular/common/locales/pt';
 import { routes } from './app.routes';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from "./shared/shared.module";
 
 const LOCALE = 'pt-BR';
 registerLocaleData(localePt, LOCALE);
@@ -29,7 +30,8 @@ const CURRENCY_CODE = 'BRL';
     ConsolidatedMonthModule,
     HttpClientModule,
     CoreModule,
-  ],
+    SharedModule,
+],
   providers: [
     provideAnimationsAsync(),
     { provide: LOCALE_ID, useValue: LOCALE },
