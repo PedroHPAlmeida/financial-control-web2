@@ -15,6 +15,19 @@ $red: #E73D1C;
 $green: #4DAF6E;
 $main-bg: #F4F5F7;
 
+:root {
+    --primary-color: #{$primary};
+    --secondary-color: #{$secondary};
+    --default-black: #{$default-black};
+    --white: #{$white};
+    --gray-1: #{$gray-1};
+    --gray-2: #{$gray-2};
+    --gray-3: #{$gray-3};
+    --gray-4: #{$gray-4};
+    --gray-5: #{$gray-5};
+    --gray-6: #{$gray-6};
+}
+
 .primary {
     background-color: $primary;
 }

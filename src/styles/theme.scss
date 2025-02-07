@@ -1,0 +1,23 @@
+@use '@angular/material' as mat;
+@import './colors.scss';
+@import './fonts.scss';
+
+@include mat.core();
+
+$my-primary: mat.define-palette(mat.$cyan-palette, 700);
+$my-accent: mat.define-palette(mat.$gray-palette, 600);
+$my-warn: mat.define-palette(mat.$red-palette, 800);
+
+$my-theme: mat.define-light-theme((color: (primary: mat.define-palette($my-primary),
+                accent: mat.define-palette($my-accent),
+                warn: mat.define-palette($my-warn),
+            ),
+            typography: mat.define-typography-config($font-family: 'Inter, sans-serif',
+                $headline-1: mat.define-typography-level(24px, 28px, 800),
+                $headline-2: mat.define-typography-level(22px, 32px, 800),
+                $body-1: mat.define-typography-level(14px, 22px, 400),
+                $body-2: mat.define-typography-level(16px, 24px, 400),
+                $button: mat.define-typography-level(16px, 24px, 600),
+            )));
+
+@include mat.all-component-themes($my-theme);
