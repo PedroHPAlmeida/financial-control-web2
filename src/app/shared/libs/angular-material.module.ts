@@ -12,6 +12,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSortModule } from "@angular/material/sort";
 import { MatPaginatorIntl, MatPaginatorModule } from "@angular/material/paginator";
 import { CustomPaginator } from "./custom/custom-paginator";
+import { MatDividerModule } from "@angular/material/divider";
 
 @NgModule({
     imports: [
@@ -26,6 +27,7 @@ import { CustomPaginator } from "./custom/custom-paginator";
         MatTabsModule,
         MatSortModule,
         MatPaginatorModule,
+        MatDividerModule,
     ],
     exports: [
         MatTableModule,
@@ -39,6 +41,7 @@ import { CustomPaginator } from "./custom/custom-paginator";
         MatTabsModule,
         MatSortModule,
         MatPaginatorModule,
+        MatDividerModule,
     ],
     providers: [
         provideNativeDateAdapter(),
