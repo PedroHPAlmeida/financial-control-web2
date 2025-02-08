@@ -10,10 +10,10 @@ $font-bold: 700;
 $font-exbold: 800;
 
 @mixin text-style($weight, $size, $line-height) {
-    font-weight: $weight;
-    font-size: $size;
-    line-height: $line-height;
-    letter-spacing: 0;
+    font-weight: $weight !important;
+    font-size: $size !important;
+    line-height: $line-height !important;
+    letter-spacing: 0 !important;
 }
 
 .text {
