@@ -1,18 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { TransactionService } from '../../../core/services/transaction.service';
 import { Transaction, TransactionType } from '../../../core/types/transaction.type';
 import { TransactionDetailsComponent } from '../../../shared/components/transaction-details/transaction-details.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-extract',
   templateUrl: './extract.component.html',
   styleUrl: './extract.component.scss'
 })
-export class ExtractComponent implements OnInit {
+export class ExtractComponent implements OnInit, AfterViewInit {
   transactions: Transaction[] = [];
   columnsToDisplay = ['title', 'description', 'value', 'date'];
   selectedTransactionType?: TransactionType;
+  dataSource = new MatTableDataSource<Transaction>(this.transactions);
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private readonly transactionService: TransactionService,
@@ -21,6 +26,10 @@ export class ExtractComponent implements OnInit {
 
   ngOnInit() {
     this.getTransactions();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
   onTabChange(index: number) {
@@ -46,6 +55,7 @@ export class ExtractComponent implements OnInit {
     this.transactionService.getAll(undefined, undefined, this.selectedTransactionType)
       .subscribe(transactions => {
         this.transactions = transactions;
+        this.dataSource.data = transactions;
       });
   }
 }

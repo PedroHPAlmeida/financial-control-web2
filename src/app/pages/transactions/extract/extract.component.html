@@ -5,7 +5,7 @@
         <mat-tab label="Despesas"></mat-tab>
     </mat-tab-group>
 
-    <table mat-table [dataSource]="transactions" class="extract">
+    <table mat-table [dataSource]="dataSource" class="extract">
         <!-- Title -->
         <ng-container matColumnDef="title">
             <th mat-header-cell *matHeaderCellDef> Título </th>
@@ -48,4 +48,6 @@
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
         <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
     </table>
+    <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons>
+    </mat-paginator>
 </div>

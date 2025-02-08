@@ -10,6 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSortModule } from "@angular/material/sort";
+import { MatPaginatorModule } from "@angular/material/paginator";
 
 @NgModule({
     imports: [
@@ -23,6 +24,7 @@ import { MatSortModule } from "@angular/material/sort";
         MatDatepickerModule,
         MatTabsModule,
         MatSortModule,
+        MatPaginatorModule,
     ],
     exports: [
         MatTableModule,
@@ -35,6 +37,7 @@ import { MatSortModule } from "@angular/material/sort";
         MatDatepickerModule,
         MatTabsModule,
         MatSortModule,
+        MatPaginatorModule,
     ],
     providers: [
         provideNativeDateAdapter(),
