@@ -41,7 +41,7 @@
             <th mat-header-cell *matHeaderCellDef> Data </th>
             <td mat-cell *matCellDef="let transaction" (click)="openTransactionDetails(transaction)"
                 class="extract__row">
-                {{ transaction.date | date }}
+                {{ transaction.date | date : "dd 'de' MMMM, yyyy" }}
             </td>
         </ng-container>
 
