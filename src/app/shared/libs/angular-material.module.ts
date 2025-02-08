@@ -10,7 +10,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSortModule } from "@angular/material/sort";
-import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatPaginatorIntl, MatPaginatorModule } from "@angular/material/paginator";
+import { CustomPaginator } from "./custom/custom-paginator";
 
 @NgModule({
     imports: [
@@ -41,6 +42,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     ],
     providers: [
         provideNativeDateAdapter(),
+        { provide: MatPaginatorIntl, useClass: CustomPaginator }
     ]
 })
 export class AngularMaterialModule { }
