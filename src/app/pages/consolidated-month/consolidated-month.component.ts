@@ -48,7 +48,7 @@ export class ConsolidatedMonthComponent implements OnInit, AfterViewInit {
     this.dataSource.sortingDataAccessor = (item: ConsolidatedTransactions, property: string) => {
       switch (property) {
         case 'title':
-          return item.title;
+          return item.title.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
         case 'value':
           return item.total;
         default:
