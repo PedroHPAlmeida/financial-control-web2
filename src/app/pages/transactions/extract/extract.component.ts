@@ -13,7 +13,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class ExtractComponent implements OnInit, AfterViewInit {
   transactions: Transaction[] = [];
-  columnsToDisplay = ['title', 'description', 'value', 'date'];
+  columnsToDisplay = ['title', 'category', 'value', 'date'];
   selectedTransactionType?: TransactionType;
   dataSource = new MatTableDataSource<Transaction>(this.transactions);
 
