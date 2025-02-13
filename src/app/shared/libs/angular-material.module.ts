@@ -13,6 +13,7 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatPaginatorIntl, MatPaginatorModule } from "@angular/material/paginator";
 import { CustomPaginator } from "./custom/custom-paginator";
 import { MatDividerModule } from "@angular/material/divider";
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
     imports: [
@@ -28,6 +29,7 @@ import { MatDividerModule } from "@angular/material/divider";
         MatSortModule,
         MatPaginatorModule,
         MatDividerModule,
+        MatStepperModule,
     ],
     exports: [
         MatTableModule,
@@ -42,6 +44,7 @@ import { MatDividerModule } from "@angular/material/divider";
         MatSortModule,
         MatPaginatorModule,
         MatDividerModule,
+        MatStepperModule,
     ],
     providers: [
         provideNativeDateAdapter(),

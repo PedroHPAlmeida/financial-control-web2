@@ -1,8 +1,9 @@
 .new-transaction {
     width: 400px;
 
-    &__form-fields {
+    &__step-container {
         display: flex;
         flex-direction: column;
+        gap: 16px;
     }
 }
