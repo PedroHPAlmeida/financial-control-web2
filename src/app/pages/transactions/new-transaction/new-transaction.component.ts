@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { TransactionService } from '../../../core/services/transaction.service';
-import { Month, TransactionCategory, TransactionCreate, TransactionType } from '../../../core/types/transaction.type';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CategoryService } from '../../../core/services/category.service';
+import { TransactionCategory, TransactionCreate, TransactionType } from '../../../core/types/transaction.type';
 import { getMonths } from '../../../shared/utils/utils';
 
 @Component({
@@ -12,38 +12,22 @@ import { getMonths } from '../../../shared/utils/utils';
   styleUrl: './new-transaction.component.scss'
 })
 export class NewTransactionComponent implements OnInit {
-  title = new FormControl(
-    { value: '', disabled: false },
-    { validators: [Validators.required, Validators.minLength(3)], updateOn: 'blur' }
-  );
-  description = new FormControl('');
-  value = new FormControl(
-    { value: null, disabled: false },
-    { validators: [Validators.required, Validators.min(0.01)], updateOn: 'blur' }
-  );
-  transactionType = new FormControl(
-    { value: null, disabled: false },
-    { validators: [Validators.required], updateOn: 'change' }
-  );
-  category = new FormControl(
-    { value: null, disabled: false },
-    { validators: [Validators.required], updateOn: 'blur' }
-  );
-  date = new FormControl(
-    { value: new Date(), disabled: false },
-    { validators: [Validators.required], updateOn: 'blur' }
-  );
-  currentMonth = new FormControl(
-    { value: new Date().getMonth() + 1, disabled: false },
-    { validators: [Validators.required], updateOn: 'blur' }
-  );
+  transactionForm!: FormGroup;
+  private today = new Date();
   months = getMonths();
   creditCategories: TransactionCategory[] = [];
   expenseCategories: TransactionCategory[] = [];
 
-  constructor(private readonly snackBar: MatSnackBar, private readonly transactionService: TransactionService, private readonly categoryService: CategoryService) { }
+  @ViewChild(FormGroupDirective) formGroupDirective!: FormGroupDirective;
+
+  constructor(
+    private readonly snackBar: MatSnackBar,
+    private readonly transactionService: TransactionService,
+    private readonly categoryService: CategoryService,
+  ) { }
 
   ngOnInit(): void {
+    this.createForm();
     this.getCategories();
   }
 
@@ -51,16 +35,33 @@ export class NewTransactionComponent implements OnInit {
     event.preventDefault();
 
     const transaction: TransactionCreate = {
-      title: this.title.value!,
-      description: this.description.value || '',
-      value: this.value.value || 0,
-      type: this.transactionType.value! as TransactionType,
-      categoryId: this.category.value!,
-      date: this.date.value || new Date(),
-      currentMonth: this.currentMonth.value!,
-    }
-    this.transactionService.register(transaction).subscribe((_) => {
+      title: this.transactionForm.get('title')?.value,
+      description: this.transactionForm.get('description')?.value || '',
+      value: this.transactionForm.get('value')?.value || 0,
+      type: this.transactionForm.get('transactionType')?.value as TransactionType,
+      categoryId: this.transactionForm.get('category')?.value,
+      date: this.transactionForm.get('date')?.value || new Date(),
+      currentMonth: this.transactionForm.get('currentMonth')?.value
+    };
+
+    this.transactionService.register(transaction).subscribe(() => {
       this.openSnackBar();
+      this.formGroupDirective.resetForm({
+        date: this.today,
+        currentMonth: this.today.getMonth() + 1
+      });
+    });
+  }
+
+  private createForm(): void {
+    this.transactionForm = new FormGroup({
+      title: new FormControl('', { validators: [Validators.required, Validators.minLength(3)], updateOn: 'blur' }),
+      description: new FormControl(''),
+      value: new FormControl(null, { validators: [Validators.required, Validators.min(0.01)], updateOn: 'blur' }),
+      transactionType: new FormControl(null, { validators: [Validators.required], updateOn: 'change' }),
+      category: new FormControl(null, { validators: [Validators.required], updateOn: 'blur' }),
+      date: new FormControl(this.today, { validators: [Validators.required], updateOn: 'blur' }),
+      currentMonth: new FormControl(this.today.getMonth() + 1, { validators: [Validators.required], updateOn: 'blur' })
     });
   }
 
