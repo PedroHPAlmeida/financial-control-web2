@@ -44,4 +44,20 @@
         justify-content: space-between;
         flex-direction: row;
     }
+
+    &__title_container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    &__icon {
+        margin-right: 10px;
+        width: 24px;
+        height: 24px;
+    }
 }

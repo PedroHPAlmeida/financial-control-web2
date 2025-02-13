@@ -10,6 +10,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { MenuItemComponent } from './components/menu/menu-item/menu-item.component';
 import { MenuLogoComponent } from './components/menu/menu-logo/menu-logo.component';
 import { HeaderComponent } from './components/header/header.component';
+import { TransactionCategoryIconPipe } from './pipes/transaction-category-icon.pipe';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { HeaderComponent } from './components/header/header.component';
         TransactionDetailsComponent,
         CurrentMonthPtPipe,
         TransactionTypeIconPipe,
+        TransactionCategoryIconPipe,
         ConsolidatedTransactionDetailsComponent,
         ShortenUuidPipe,
         MenuComponent,
@@ -35,6 +37,7 @@ import { HeaderComponent } from './components/header/header.component';
         CurrentMonthPtPipe,
         ShortenUuidPipe,
         TransactionTypeIconPipe,
+        TransactionCategoryIconPipe,
         MenuComponent,
         HeaderComponent,
     ],
