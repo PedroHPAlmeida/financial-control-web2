@@ -26,7 +26,7 @@ export type TransactionCreate = {
     description: string;
     value: number;
     type: TransactionType;
-    currentMonth: Month;
+    currentMonth: number;
     date: Date;
     categoryId?: string;
 };

@@ -5,24 +5,32 @@
             <mat-form-field>
                 <mat-label>Título</mat-label>
                 <input id="title" matInput placeholder="Luz" type="text" [formControl]="title">
+                <mat-error *ngIf="title.hasError('required')">O título é obrigatório</mat-error>
+                <mat-error *ngIf="title.hasError('minlength')">O título deve ter pelo
+                    menos 3 caracteres</mat-error>
             </mat-form-field>
 
             <mat-form-field>
                 <mat-label>Descrição</mat-label>
-                <textarea id="description" matInput placeholder="Conta de energia elétrica"
+                <textarea id=" description" matInput placeholder="Conta de energia elétrica"
                     [formControl]="description"></textarea>
             </mat-form-field>
 
             <mat-form-field>
                 <mat-label>Valor</mat-label>
                 <input id="value" matInput type="number" [formControl]="value">
+                <mat-error *ngIf="value.hasError('required')">O valor é obrigatório</mat-error>
+                <mat-error *ngIf="value.hasError('min')">O valor deve ser maior ou igual a um centavo</mat-error>
             </mat-form-field>
 
-            <label>Tipo</label>
-            <mat-radio-group id="transactionType" aria-label="Tipo de transação" [formControl]="transactionType">
-                <mat-radio-button value="CREDIT">Crédito</mat-radio-button>
-                <mat-radio-button value="EXPENSE">Despesa</mat-radio-button>
-            </mat-radio-group>
+            <mat-form-field>
+                <mat-label>Tipo</mat-label>
+                <mat-select id="transactionType" [formControl]="transactionType">
+                    <mat-option value="CREDIT">Crédito</mat-option>
+                    <mat-option value="EXPENSE">Despesa</mat-option>
+                </mat-select>
+                <mat-error *ngIf="transactionType.hasError('required')">O tipo é obrigatório</mat-error>
+            </mat-form-field>
 
             <ng-container *ngIf="transactionType.dirty">
                 <mat-form-field>
@@ -32,6 +40,7 @@
                             *ngFor="let category of transactionType.value === 'CREDIT' ? creditCategories : expenseCategories"
                             [value]="category.id">{{ category.name }}</mat-option>
                     </mat-select>
+                    <mat-error *ngIf="category.hasError('required')">A categoria é obrigatória</mat-error>
                 </mat-form-field>
             </ng-container>
 
@@ -40,6 +49,7 @@
                 <input id="date" matInput [matDatepicker]="picker" [formControl]="date">
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="date.hasError('required')">A data é obrigatória</mat-error>
             </mat-form-field>
 
             <mat-form-field>
@@ -47,6 +57,7 @@
                 <mat-select id="currentMonth" [formControl]="currentMonth">
                     <mat-option *ngFor="let month of months" [value]="month.value">{{ month.name }}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="currentMonth.hasError('required')">O mês corrente é obrigatório</mat-error>
             </mat-form-field>
         </mat-dialog-content>
 
