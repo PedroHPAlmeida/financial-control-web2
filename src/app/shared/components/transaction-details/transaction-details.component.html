@@ -3,13 +3,14 @@
     <mat-dialog-content>
         <div>
             <p>ID: {{ transaction.id }}</p>
+            <p>Categoria: {{ transaction.category.name }}</p>
             <p>Descrição: {{ transaction.description }}</p>
             <div class="transaction-details__value">
                 <p>Valor: {{ transaction.value | currency }}</p>
                 <img [src]="transaction.type | transactionTypeIcon" alt="arrow">
             </div>
             <p>Data: {{ transaction.date | date }}</p>
-            <p>Hora: {{ transaction.timestamp }}</p>
+            <p>Hora: {{ ('1970-01-01T' + transaction.timestamp) | date: 'HH:mm' }}</p>
         </div>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
