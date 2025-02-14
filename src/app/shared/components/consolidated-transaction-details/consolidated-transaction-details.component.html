@@ -1,13 +1,26 @@
-<div>
+<div class="consolidated-transaction-details">
     <h2 mat-dialog-title>{{ consolidated.title }}</h2>
     <mat-dialog-content>
-        <ul>
-            <li *ngFor="let t of consolidated.transactions">
-                <p>ID: {{ t.id | shortenUuid }}</p>
-                <p>Valor: {{ t.value | currency }}</p>
-                <p>Data: {{ t.date | date }}</p>
-            </li>
-        </ul>
+        <mat-accordion multi>
+            <mat-expansion-panel *ngFor="let t of consolidated.transactions">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>{{ t.id | shortenUuid }}</mat-panel-title>
+                    <mat-panel-description>{{ t.date | date }}</mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div>
+                    <p>ID: {{ t.id }}</p>
+                    <p>Categoria: {{ t.category.name }}</p>
+                    <p>Descrição: {{ t.description }}</p>
+                    <div class="consolidated-transaction-details__value">
+                        <p>Valor: {{ t.value | currency }}</p>
+                        <img [src]="t.type | transactionTypeIcon" alt="arrow">
+                    </div>
+                    <p>Data: {{ t.date | date }}</p>
+                    <p>Hora: {{ ('1970-01-01T' + t.timestamp) | date: 'HH:mm' }}</p>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
         <button mat-flat-button color="warn" mat-dialog-close>Fechar</button>

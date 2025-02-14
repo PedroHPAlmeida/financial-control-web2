@@ -14,6 +14,7 @@ import { MatPaginatorIntl, MatPaginatorModule } from "@angular/material/paginato
 import { CustomPaginator } from "./custom/custom-paginator";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
     imports: [
@@ -30,6 +31,8 @@ import { MatStepperModule } from '@angular/material/stepper';
         MatPaginatorModule,
         MatDividerModule,
         MatStepperModule,
+        MatExpansionModule,
+        MatAccordion,
     ],
     exports: [
         MatTableModule,
@@ -45,6 +48,8 @@ import { MatStepperModule } from '@angular/material/stepper';
         MatPaginatorModule,
         MatDividerModule,
         MatStepperModule,
+        MatExpansionModule,
+        MatAccordion,
     ],
     providers: [
         provideNativeDateAdapter(),
