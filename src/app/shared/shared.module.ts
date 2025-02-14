@@ -11,6 +11,7 @@ import { MenuItemComponent } from './components/menu/menu-item/menu-item.compone
 import { MenuLogoComponent } from './components/menu/menu-logo/menu-logo.component';
 import { HeaderComponent } from './components/header/header.component';
 import { TransactionCategoryIconPipe } from './pipes/transaction-category-icon.pipe';
+import { NgxCurrencyModule } from './libs/ngx-currency.module';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { TransactionCategoryIconPipe } from './pipes/transaction-category-icon.p
     imports: [
         BrowserModule,
         AngularMaterialModule,
+        NgxCurrencyModule,
     ],
     exports: [
         ConsolidatedTransactionDetailsComponent,
@@ -40,6 +42,7 @@ import { TransactionCategoryIconPipe } from './pipes/transaction-category-icon.p
         TransactionCategoryIconPipe,
         MenuComponent,
         HeaderComponent,
+        NgxCurrencyModule,
     ],
 })
 export class SharedModule { }

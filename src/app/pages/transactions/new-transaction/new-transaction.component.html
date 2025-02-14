@@ -60,7 +60,7 @@
 
                 <mat-form-field appearance="fill">
                     <mat-label>Valor</mat-label>
-                    <input id="value" matInput type="number" formControlName="value">
+                    <input id="value" matInput type="text" currencyMask [options]="currencyOptions" formControlName="value">
                     <mat-error *ngIf="step2FormGroup.get('value')?.hasError('required')">
                         O valor é obrigatório
                     </mat-error>

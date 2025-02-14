@@ -20,6 +20,14 @@ export class NewTransactionComponent implements OnInit {
   months = getMonths();
   creditCategories: TransactionCategory[] = [];
   expenseCategories: TransactionCategory[] = [];
+  currencyOptions = {
+    prefix: 'R$ ',
+    thousands: '.',
+    decimal: ',',
+    align: 'left',
+    allowNegative: false,
+    precision: 2
+  };
 
   private today = new Date();
 
