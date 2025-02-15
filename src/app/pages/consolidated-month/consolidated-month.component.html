@@ -1,12 +1,15 @@
 <div class="consolidated-month">
     <header class="consolidated-month__header">
-        <h1 class="consolidated-month__title text-header">Consolidado do Mês</h1>
-        <mat-form-field>
-            <mat-label>Mês</mat-label>
-            <mat-select id="currentMonth" [formControl]="currentMonth">
-                <mat-option *ngFor="let month of months" [value]="month.value">{{ month.name }}</mat-option>
-            </mat-select>
-        </mat-form-field>
+        <div>
+            <h1 class="text-gray-2 text-header">Consolidado do Mês</h1>
+            <mat-form-field>
+                <mat-label>Mês</mat-label>
+                <mat-select id="currentMonth" [formControl]="currentMonth">
+                    <mat-option *ngFor="let month of months" [value]="month.value">{{ month.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <button mat-flat-button color="primary" (click)="openNewTransactionDialog()">Registrar Transação</button>
     </header>
 
     <section class="consolidated-month__content">

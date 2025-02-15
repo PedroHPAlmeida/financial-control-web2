@@ -10,6 +10,7 @@ import { BalanceService } from '../../core/services/balance.service';
 import { ConsolidatedTransactionDetailsComponent } from '../../shared/components/consolidated-transaction-details/consolidated-transaction-details.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { NewTransactionComponent } from '../transactions/new-transaction/new-transaction.component';
 
 @Component({
   selector: 'app-consolidated-month',
@@ -69,6 +70,10 @@ export class ConsolidatedMonthComponent implements OnInit, AfterViewInit {
 
   openExpenseDetails(consolidated: ConsolidatedTransactions) {
     this.dialog.open(ConsolidatedTransactionDetailsComponent, { data: consolidated });
+  }
+
+  openNewTransactionDialog() {
+    this.dialog.open(NewTransactionComponent);
   }
 
   private getTotals() {
