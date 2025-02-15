@@ -6,6 +6,7 @@ import { CategoryService } from '../../../core/services/category.service';
 import { TransactionCategory, TransactionCreate, TransactionType } from '../../../core/types/transaction.type';
 import { getMonths } from '../../../shared/utils/utils';
 import { MatStepper } from '@angular/material/stepper';
+import { Observable, map, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-new-transaction',
@@ -20,6 +21,10 @@ export class NewTransactionComponent implements OnInit {
   months = getMonths();
   creditCategories: TransactionCategory[] = [];
   expenseCategories: TransactionCategory[] = [];
+
+  titleSuggestions!: string[];
+  filteredTitleSuggestions!: Observable<string[]>;
+
   currencyOptions = {
     prefix: 'R$ ',
     thousands: '.',
@@ -43,24 +48,7 @@ export class NewTransactionComponent implements OnInit {
   ngOnInit() {
     this.createFormGroups();
     this.getCategories();
-  }
-
-  private createFormGroups() {
-    this.step1FormGroup = new FormGroup({
-      transactionType: new FormControl(null, { validators: [Validators.required], updateOn: 'change' }),
-      category: new FormControl(null, { validators: [Validators.required], updateOn: 'blur' })
-    });
-
-    this.step2FormGroup = new FormGroup({
-      title: new FormControl('', { validators: [Validators.required, Validators.minLength(3)], updateOn: 'blur' }),
-      description: new FormControl(''),
-      value: new FormControl(null, { validators: [Validators.required, Validators.min(0.01)], updateOn: 'blur' })
-    });
-
-    this.step3FormGroup = new FormGroup({
-      date: new FormControl(this.today, { validators: [Validators.required], updateOn: 'blur' }),
-      currentMonth: new FormControl(this.today.getMonth() + 1, { validators: [Validators.required], updateOn: 'blur' })
-    });
+    this.getTitleSuggestions();
   }
 
   registerTransaction(event: Event) {
@@ -86,6 +74,44 @@ export class NewTransactionComponent implements OnInit {
         this.resetForms();
       });
     }
+  }
+
+  private createFormGroups() {
+    this.step1FormGroup = new FormGroup({
+      transactionType: new FormControl(null, { validators: [Validators.required], updateOn: 'change' }),
+      category: new FormControl(null, { validators: [Validators.required], updateOn: 'blur' })
+    });
+
+    this.step2FormGroup = new FormGroup({
+      title: new FormControl('', { validators: [Validators.required, Validators.minLength(3)] }),
+      description: new FormControl(''),
+      value: new FormControl(null, { validators: [Validators.required, Validators.min(0.01)], updateOn: 'blur' })
+    });
+
+    this.step3FormGroup = new FormGroup({
+      date: new FormControl(this.today, { validators: [Validators.required], updateOn: 'blur' }),
+      currentMonth: new FormControl(this.today.getMonth() + 1, { validators: [Validators.required], updateOn: 'blur' })
+    });
+  }
+
+  private getTitleSuggestions() {
+    this.step1FormGroup.get('transactionType')?.valueChanges.subscribe(transactionType => {
+      this.transactionService.getTitleSuggestions(transactionType).subscribe(titles => {
+        this.titleSuggestions = titles;
+
+        this.filteredTitleSuggestions = this.step2FormGroup.get('title')!.valueChanges.pipe(
+          startWith(''),
+          map(value => this.filterTitle(value || ''))
+        );
+      });
+    });
+  }
+
+  private filterTitle(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.titleSuggestions.filter(option =>
+      option.toLowerCase().includes(filterValue)
+    );
   }
 
   private resetForms() {

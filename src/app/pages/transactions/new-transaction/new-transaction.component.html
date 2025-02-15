@@ -43,7 +43,15 @@
             <div class="new-transaction__step-container">
                 <mat-form-field appearance="fill">
                     <mat-label>Título</mat-label>
-                    <input id="title" matInput placeholder="Luz" type="text" formControlName="title">
+                    <input id="title" matInput placeholder="Luz" type="text" formControlName="title"
+                        [matAutocomplete]="auto" />
+
+                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredTitleSuggestions | async" [value]="option">
+                            {{ option }}
+                        </mat-option>
+                    </mat-autocomplete>
+
                     <mat-error *ngIf="step2FormGroup.get('title')?.hasError('required')">
                         O título é obrigatório
                     </mat-error>
@@ -60,7 +68,8 @@
 
                 <mat-form-field appearance="fill">
                     <mat-label>Valor</mat-label>
-                    <input id="value" matInput type="text" currencyMask [options]="currencyOptions" formControlName="value">
+                    <input id="value" matInput type="text" currencyMask [options]="currencyOptions"
+                        formControlName="value">
                     <mat-error *ngIf="step2FormGroup.get('value')?.hasError('required')">
                         O valor é obrigatório
                     </mat-error>

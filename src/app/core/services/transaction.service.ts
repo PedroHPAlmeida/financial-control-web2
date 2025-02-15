@@ -26,7 +26,7 @@ export class TransactionService {
   }
 
   register(transaction: TransactionCreate): Observable<Transaction> {
-    return this.httpClient.post<Transaction>(this.basePath, {...transaction, date: transaction.date.toISOString()});
+    return this.httpClient.post<Transaction>(this.basePath, { ...transaction, date: transaction.date.toISOString() });
   }
 
   getTotals(month: number, year: number): Observable<TransactionTotals> {
@@ -37,5 +37,18 @@ export class TransactionService {
   consolidateMonth(type: TransactionType, month: number, year: number): Observable<ConsolidatedTransactions[]> {
     const params = { type, month, year };
     return this.httpClient.get<ConsolidatedTransactions[]>(`${this.basePath}/consolidated`, { params });
+  }
+
+  // TODO: Substituir por uma chamada ao backend
+  getTitleSuggestions(type: TransactionType): Observable<string[]> {
+    const transactions = this.getAll(undefined, undefined, type);
+    return new Observable<string[]>(subscriber => {
+      transactions.subscribe((transactions) => {
+        const titles = transactions.map(transaction => transaction.title);
+        const uniqueTitles = [...new Set(titles)];
+        subscriber.next(uniqueTitles);
+        subscriber.complete();
+      });
+    });
   }
 }
