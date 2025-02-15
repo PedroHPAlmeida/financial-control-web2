@@ -47,23 +47,27 @@
         <div>
             <div class="consolidated-month__balances-row">
                 <h3 class="text-medium-16-24">Créditos</h3>
+                <div class="consolidated-month__dotted"></div>
                 <p class="text-medium-16-24">{{ totals.credits | currency }}</p>
             </div>
             <div class="consolidated-month__balances-row">
                 <h3 class="text-medium-16-24">Despesas</h3>
+                <div class="consolidated-month__dotted"></div>
                 <p class="text-medium-16-24">{{ totals.expenses | currency }}</p>
             </div>
             <div class="consolidated-month__balances-row">
                 <h3 class="text-medium-16-24">Saldo</h3>
+                <div class="consolidated-month__dotted"></div>
                 <p class="text-medium-16-24" [ngClass]="{
-                        'text-green': balance > 0,
-                        'text-red': balance < 0
-                    }">
+                    'text-green': balance > 0,
+                    'text-red': balance < 0
+                }">
                     {{ balance | currency }}
                 </p>
             </div>
             <div class="consolidated-month__balances-row">
                 <h3 class="text-medium-16-24">Saldo + Valores a receber</h3>
+                <div class="consolidated-month__dotted"></div>
                 <p class="text-medium-16-24" [ngClass]="{
                         'text-green': balancePlusRemainingPayments > 0,
                         'text-red': balancePlusRemainingPayments < 0
