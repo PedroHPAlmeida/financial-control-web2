@@ -100,7 +100,7 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
-                    <mat-label>Mês Corrente</mat-label>
+                    <mat-label>Mês corrente</mat-label>
                     <mat-select id="currentMonth" formControlName="currentMonth">
                         <mat-option *ngFor="let month of months" [value]="month.value">
                             {{ month.name }}
@@ -110,6 +110,19 @@
                         O mês corrente é obrigatório
                     </mat-error>
                 </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Ano corrente</mat-label>
+                    <mat-select id="currentYear" formControlName="currentYear">
+                        <mat-option *ngFor="let year of years" [value]="year">
+                            {{ year }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="step3FormGroup.get('currentYear')?.hasError('required')">
+                        O ano corrente é obrigatório
+                    </mat-error>
+                </mat-form-field>
+
             </div>
             <div>
                 <button mat-button matStepperPrevious>Voltar</button>

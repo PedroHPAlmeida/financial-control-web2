@@ -16,6 +16,7 @@ export type Transaction = {
     value: number;
     type: TransactionType;
     currentMonth: Month;
+    currentYear: number;
     date: string;
     timestamp: string;
     category: TransactionCategory;
@@ -27,6 +28,7 @@ export type TransactionCreate = {
     value: number;
     type: TransactionType;
     currentMonth: number;
+    currentYear: number;
     date: Date;
     categoryId?: string;
 };

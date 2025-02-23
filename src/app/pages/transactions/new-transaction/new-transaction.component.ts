@@ -4,7 +4,7 @@ import { TransactionService } from '../../../core/services/transaction.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CategoryService } from '../../../core/services/category.service';
 import { TransactionCategory, TransactionCreate, TransactionType } from '../../../core/types/transaction.type';
-import { getMonths } from '../../../shared/utils/utils';
+import { getMonths, getYears } from '../../../shared/utils/utils';
 import { MatStepper } from '@angular/material/stepper';
 import { Observable, map, startWith } from 'rxjs';
 
@@ -18,6 +18,7 @@ export class NewTransactionComponent implements OnInit {
   step2FormGroup!: FormGroup;
   step3FormGroup!: FormGroup;
 
+  years = getYears();
   months = getMonths();
   creditCategories: TransactionCategory[] = [];
   expenseCategories: TransactionCategory[] = [];
@@ -66,7 +67,8 @@ export class NewTransactionComponent implements OnInit {
         type: this.step1FormGroup.get('transactionType')?.value as TransactionType,
         categoryId: this.step1FormGroup.get('category')?.value,
         date: this.step3FormGroup.get('date')?.value || new Date(),
-        currentMonth: this.step3FormGroup.get('currentMonth')?.value
+        currentMonth: this.step3FormGroup.get('currentMonth')?.value,
+        currentYear: this.step3FormGroup.get('currentYear')?.value
       };
 
       this.transactionService.register(transaction).subscribe(() => {
@@ -90,7 +92,8 @@ export class NewTransactionComponent implements OnInit {
 
     this.step3FormGroup = new FormGroup({
       date: new FormControl(this.today, { validators: [Validators.required], updateOn: 'blur' }),
-      currentMonth: new FormControl(this.today.getMonth() + 1, { validators: [Validators.required], updateOn: 'blur' })
+      currentMonth: new FormControl(this.today.getMonth() + 1, { validators: [Validators.required], updateOn: 'blur' }),
+      currentYear: new FormControl(this.today.getFullYear(), { validators: [Validators.required], updateOn: 'blur' })
     });
   }
 

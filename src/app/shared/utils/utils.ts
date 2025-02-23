@@ -14,3 +14,8 @@ export function getMonths() {
         { name: 'Dezembro', value: 12 },
     ];
 }
+
+export function getYears() {
+    const lastYear = new Date().getFullYear() - 1;
+    return Array.from({ length: 3 }, (_, index) => lastYear + index);
+}
