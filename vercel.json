@@ -1,9 +1,8 @@
 {
-    "rewrites": [
-      {
-        "source": "/api/v1/(.*)",
-        "destination": "https://financial-control-21c81a8e2922.herokuapp.com/api/v1/$1"
-      }
-    ]
-  }
-  
+  "rewrites": [
+    {
+      "source": "/api/v1/(.*)",
+      "destination": "https://financial-control-21c81a8e2922.herokuapp.com/api/v1/$1"
+    }
+  ]
+}
