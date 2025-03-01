@@ -17,6 +17,7 @@
                         <img [src]="t.type | transactionTypeIcon" alt="arrow">
                     </div>
                     <p>Data: {{ t.date | date }}</p>
+                    <p>Mês Corrente: {{ t.currentMonth | currentMonthPt | titlecase }}</p>
                     <p>Hora: {{ ('1970-01-01T' + t.timestamp) | date: 'HH:mm' }}</p>
                 </div>
             </mat-expansion-panel>

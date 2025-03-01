@@ -10,6 +10,7 @@
                 <img [src]="transaction.type | transactionTypeIcon" alt="arrow">
             </div>
             <p>Data: {{ transaction.date | date }}</p>
+            <p>Mês Corrente: {{ transaction.currentMonth | currentMonthPt | titlecase }}</p>
             <p>Hora: {{ ('1970-01-01T' + transaction.timestamp) | date: 'HH:mm' }}</p>
         </div>
     </mat-dialog-content>
