@@ -77,6 +77,21 @@
                         O valor deve ser maior ou igual a um centavo
                     </mat-error>
                 </mat-form-field>
+
+                <div class="container">
+                    <input type="file" style="display: none" #fileInput accept="image/*"
+                        (change)="onChangeFileInput()" />
+                    <button mat-raised-button color="primary" class="file-select-button"
+                        (click)="onClickFileInputButton()">
+                        <mat-icon>attach_file</mat-icon>
+                        Comprovante
+                    </button>
+
+                    <p class="file-name" *ngIf="!file; else fileName">Nenhum arquivo selecionado</p>
+                    <ng-template #fileName>
+                        <p class="file-name">{{ file?.name }}</p>
+                    </ng-template>
+                </div>
             </div>
             <div>
                 <button mat-button matStepperPrevious>Voltar</button>

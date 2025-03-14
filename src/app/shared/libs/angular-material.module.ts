@@ -16,6 +16,7 @@ import { MatDividerModule } from "@angular/material/divider";
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
     imports: [
@@ -35,6 +36,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
         MatExpansionModule,
         MatAccordion,
         MatAutocompleteModule,
+        MatIconModule,
     ],
     exports: [
         MatTableModule,
@@ -53,6 +55,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
         MatExpansionModule,
         MatAccordion,
         MatAutocompleteModule,
+        MatIconModule,
     ],
     providers: [
         provideNativeDateAdapter(),

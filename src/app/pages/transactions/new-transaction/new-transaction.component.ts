@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { TransactionService } from '../../../core/services/transaction.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -40,6 +40,9 @@ export class NewTransactionComponent implements OnInit {
   @ViewChild('stepper') stepper!: MatStepper;
   @ViewChildren(FormGroupDirective) formGroupDirectives!: QueryList<FormGroupDirective>;
 
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+  file: File | null = null;
+
   constructor(
     private readonly snackBar: MatSnackBar,
     private readonly transactionService: TransactionService,
@@ -68,14 +71,26 @@ export class NewTransactionComponent implements OnInit {
         categoryId: this.step1FormGroup.get('category')?.value,
         date: this.step3FormGroup.get('date')?.value || new Date(),
         currentMonth: this.step3FormGroup.get('currentMonth')?.value,
-        currentYear: this.step3FormGroup.get('currentYear')?.value
+        currentYear: this.step3FormGroup.get('currentYear')?.value,
       };
 
-      this.transactionService.register(transaction).subscribe(() => {
+      this.transactionService.register(
+        transaction,
+        this.step3FormGroup.get('receipt')?.value as File
+      ).subscribe(() => {
         this.openSnackBar();
         this.resetForms();
       });
     }
+  }
+
+  onClickFileInputButton(): void {
+    this.fileInput.nativeElement.click();
+  }
+
+  onChangeFileInput(): void {
+    const files = this.fileInput.nativeElement.files;
+    this.file = files ? files[0] : null;
   }
 
   private createFormGroups() {
@@ -93,7 +108,8 @@ export class NewTransactionComponent implements OnInit {
     this.step3FormGroup = new FormGroup({
       date: new FormControl(this.today, { validators: [Validators.required], updateOn: 'blur' }),
       currentMonth: new FormControl(this.today.getMonth() + 1, { validators: [Validators.required], updateOn: 'blur' }),
-      currentYear: new FormControl(this.today.getFullYear(), { validators: [Validators.required], updateOn: 'blur' })
+      currentYear: new FormControl(this.today.getFullYear(), { validators: [Validators.required], updateOn: 'blur' }),
+      receipt: new FormControl(null)
     });
   }
 

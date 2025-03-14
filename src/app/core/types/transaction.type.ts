@@ -20,6 +20,7 @@ export type Transaction = {
     date: string;
     timestamp: string;
     category: TransactionCategory;
+    hasReceipt: boolean;
 };
 
 export type TransactionCreate = {

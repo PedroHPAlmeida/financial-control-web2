@@ -25,8 +25,15 @@ export class TransactionService {
     return this.httpClient.get<Transaction[]>(this.basePath, { params });
   }
 
-  register(transaction: TransactionCreate): Observable<Transaction> {
-    return this.httpClient.post<Transaction>(this.basePath, { ...transaction, date: transaction.date.toISOString() });
+  register(transaction: TransactionCreate, receipt?: File): Observable<Transaction> {
+    const formData = new FormData();
+    formData.append('transaction', JSON.stringify({ ...transaction, date: transaction.date.toISOString() }));
+
+    if (receipt) {
+      formData.append('receipt', receipt);
+    }
+
+    return this.httpClient.post<Transaction>(this.basePath, formData);
   }
 
   getTotals(month: number, year: number): Observable<TransactionTotals> {
