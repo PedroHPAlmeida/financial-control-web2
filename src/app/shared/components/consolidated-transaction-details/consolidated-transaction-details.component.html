@@ -20,6 +20,12 @@
                     <p>Mês Corrente: {{ t.currentMonth | currentMonthPt | titlecase }}</p>
                     <p>Hora: {{ ('1970-01-01T' + t.timestamp) | date: 'HH:mm' }}</p>
                 </div>
+                <mat-action-row *ngIf="t.hasReceipt">
+                    <button mat-raised-button color="primary" (click)="onClickDownloadReceipt(t.id)">
+                        <mat-icon>file_download</mat-icon>
+                        Comprovante
+                    </button>
+                </mat-action-row>
             </mat-expansion-panel>
         </mat-accordion>
     </mat-dialog-content>

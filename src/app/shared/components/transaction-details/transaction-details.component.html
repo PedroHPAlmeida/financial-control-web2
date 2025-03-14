@@ -15,7 +15,7 @@
         </div>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
-        <button *ngIf="transaction.hasReceipt" mat-raised-button color="primary" class="file-select-button" (click)="onClickDownloadReceipt()">
+        <button *ngIf="transaction.hasReceipt" mat-raised-button color="primary" (click)="onClickDownloadReceipt()">
             <mat-icon>file_download</mat-icon>
             Comprovante
         </button>
