@@ -74,21 +74,18 @@ export class NewTransactionComponent implements OnInit {
         currentYear: this.step3FormGroup.get('currentYear')?.value,
       };
 
-      this.transactionService.register(
-        transaction,
-        this.step3FormGroup.get('receipt')?.value as File
-      ).subscribe(() => {
+      this.transactionService.register(transaction, this.file || undefined).subscribe(() => {
         this.openSnackBar();
         this.resetForms();
       });
     }
   }
 
-  onClickFileInputButton(): void {
+  onClickFileInputButton() {
     this.fileInput.nativeElement.click();
   }
 
-  onChangeFileInput(): void {
+  onChangeFileInput() {
     const files = this.fileInput.nativeElement.files;
     this.file = files ? files[0] : null;
   }
@@ -109,7 +106,6 @@ export class NewTransactionComponent implements OnInit {
       date: new FormControl(this.today, { validators: [Validators.required], updateOn: 'blur' }),
       currentMonth: new FormControl(this.today.getMonth() + 1, { validators: [Validators.required], updateOn: 'blur' }),
       currentYear: new FormControl(this.today.getFullYear(), { validators: [Validators.required], updateOn: 'blur' }),
-      receipt: new FormControl(null)
     });
   }
 
@@ -136,8 +132,10 @@ export class NewTransactionComponent implements OnInit {
   private resetForms() {
     this.stepper.reset();
     this.formGroupDirectives.forEach(formGroupDirective => formGroupDirective.resetForm());
+    this.file = null;
     this.step3FormGroup.get('date')?.setValue(this.today);
     this.step3FormGroup.get('currentMonth')?.setValue(this.today.getMonth() + 1);
+    this.step3FormGroup.get('currentYear')?.setValue(this.today.getFullYear());
   }
 
   private getCategories() {
