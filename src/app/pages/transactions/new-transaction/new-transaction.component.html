@@ -78,18 +78,16 @@
                     </mat-error>
                 </mat-form-field>
 
-                <div class="container">
-                    <input type="file" style="display: none" #fileInput accept="image/*"
-                        (change)="onChangeFileInput()" />
-                    <button mat-raised-button color="primary" class="file-select-button"
-                        (click)="onClickFileInputButton()">
+                <div>
+                    <input type="file" style="display: none" #fileInput (change)="onChangeFileInput()" />
+                    <button mat-raised-button color="primary" (click)="onClickFileInputButton()">
                         <mat-icon>attach_file</mat-icon>
                         Comprovante
                     </button>
 
-                    <p class="file-name" *ngIf="!file; else fileName">Nenhum arquivo selecionado</p>
+                    <p *ngIf="!file; else fileName">Nenhum arquivo selecionado</p>
                     <ng-template #fileName>
-                        <p class="file-name">{{ file?.name }}</p>
+                        <p>{{ file?.name }}</p>
                     </ng-template>
                 </div>
             </div>
