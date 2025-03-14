@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ConsolidatedTransactions, Transaction, TransactionCreate, TransactionType, TransactionTotals } from '../types/transaction.type';
@@ -34,6 +34,13 @@ export class TransactionService {
     }
 
     return this.httpClient.post<Transaction>(this.basePath, formData);
+  }
+
+  downloadReceipt(id: string): Observable<HttpResponse<Blob>> {
+    return this.httpClient.get(`${this.basePath}/${id}/receipt`, {
+      observe: 'response',
+      responseType: 'blob'
+    });
   }
 
   getTotals(month: number, year: number): Observable<TransactionTotals> {
